@@ -1,0 +1,36 @@
+<% provide(:title, 'Make a suggestion!') %>
+<h1>Princeton Suggestions</h1>
+
+<div class="row">
+  <div class="span6 offset0">
+    <%= form_for(@idea) do |f| %>
+
+      <%= f.label :text, "Make a suggestion!" %>
+      <%= f.text_field :text %>
+
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<ul style="list-style-type:none" class="ideas">
+	<% @ideas.each do |idea| %>
+		<li>
+			<style>
+			div.ex
+			{
+				width:300px;
+				padding:20px;
+				border:20px solid orange;
+				margin:20px;
+			}
+			</style>
+			<div class="ex">
+				<%= link_to idea.text, idea %>
+				<%= idea.points %>
+			
+				<%= button_to "+1", { :id => idea.id, :action => :update }, :method => :put %>
+			</div>
+		</li>
+	<% end %>
+</ul>
